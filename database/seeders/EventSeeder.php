@@ -26,7 +26,6 @@ class EventSeeder extends Seeder
             [
                 'title' => 'Panel Inaugural',
                 'category' => 'Académico',
-                'document_type' => 'Cédula de Ciudadanía',
                 'description' => 'Experiencias de expertos nacionales e internacionales sobre el desarrollo turístico y productivo de Norte de Santander.',
                 'start_date' => '2025-10-20',
                 'start_time' => '18:00:00',
@@ -39,7 +38,6 @@ class EventSeeder extends Seeder
             [
                 'title' => '4º FESCtival Internacional de Cine Universitario de Cúcuta',
                 'category' => 'Cultural',
-                'document_type' => 'Cédula de Ciudadanía',
                 'description' => 'Concurso de cortometrajes con temáticas turísticas y culturales. Participan estudiantes de universidades de Colombia y otros países.',
                 'start_date' => '2025-10-21',
                 'start_time' => '08:00:00',
@@ -52,7 +50,6 @@ class EventSeeder extends Seeder
             [
                 'title' => 'City Tour: Cúcuta Destino Fronterizo e Histórico',
                 'category' => 'Turismo',
-                'document_type' => 'Cédula de Ciudadanía',
                 'description' => 'Recorrido guiado por los principales puntos turísticos e históricos de la ciudad de Cúcuta, promoviendo su valor patrimonial.',
                 'start_date' => '2025-10-23',
                 'start_time' => '17:00:00',
@@ -65,7 +62,6 @@ class EventSeeder extends Seeder
             [
                 'title' => 'Feria Cultural: Las Riquezas de Mi Tierra',
                 'category' => 'Feria',
-                'document_type' => 'Cédula de Ciudadanía',
                 'description' => 'Exposición gastronómica, danzas, artesanías, música tradicional y atractivos turísticos del Norte de Santander.',
                 'start_date' => '2025-10-24',
                 'start_time' => '12:00:00',
@@ -78,7 +74,6 @@ class EventSeeder extends Seeder
             [
                 'title' => 'Fiesta de Cierre: Destino Norte de Santander',
                 'category' => 'Cierre',
-                'document_type' => 'Cédula de Ciudadanía',
                 'description' => 'Evento de clausura con presentaciones culturales, música, muestras gastronómicas y país invitado: España.',
                 'start_date' => '2025-10-24',
                 'start_time' => '18:00:00',
@@ -92,7 +87,6 @@ class EventSeeder extends Seeder
 
         foreach ($events as $data) {
             $category = Category::where('name', $data['category'])->first();
-            $documentType = DocumentType::where('name', $data['document_type'])->first();
             $location = Location::where('name_location', $data['name_location'])->first();
             $image = Image::where('alt_text', $data['image_alt'])->first();
 
@@ -100,7 +94,6 @@ class EventSeeder extends Seeder
                 'uuid' => Str::uuid(),
                 'title' => $data['title'],
                 'category_id' => $category?->id,
-                'document_type_id' => $documentType?->id,
                 'description' => $data['description'],
                 'start_date' => $data['start_date'],
                 'start_time' => $data['start_time'],

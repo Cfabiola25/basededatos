@@ -18,14 +18,15 @@ class TagSeeder extends Seeder
             ['name' => 'Moda', 'uuid' => Str::uuid()],
             ['name' => 'Diseño', 'uuid' => Str::uuid()],
             ['name' => 'IA', 'uuid' => Str::uuid()],
-            ['name' => 'Fotografía', 'uuid' => Str::uuid()],
             ['name' => 'Finanzas', 'uuid' => Str::uuid()],
             ['name' => 'Emprendimiento', 'uuid' => Str::uuid()],
             ['name' => 'Gastronomía', 'uuid' => Str::uuid()],
-            ['name' => 'Comercio', 'uuid' => Str::uuid()],
-            ['name' => 'Moda Artesanal', 'uuid' => Str::uuid()],
+            ['name' => 'Negocios', 'uuid' => Str::uuid()],
+            ['name' => 'Desarrollo', 'uuid' => Str::uuid()],
+            ['name' => 'Cultura', 'uuid' => Str::uuid()],
+            ['name' => 'Investigación', 'uuid' => Str::uuid()],
         ];
-
+        
         foreach ($tags as $tag) {
             Tag::create([
                 'uuid' => $tag['uuid'],
