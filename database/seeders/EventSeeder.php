@@ -23,7 +23,7 @@ class EventSeeder extends Seeder
                 'start_date' => '2025-10-20',
                 'start_time' => '18:00:00',
                 'end_date' => '2025-10-20',
-                'end_time' => '19:00:00',
+                'end_time' => '20:00:00',
                 'location_name' => 'Teatro Zulima',
             ],
             [
@@ -57,7 +57,7 @@ class EventSeeder extends Seeder
                 'title' => 'Viernes 24 de octubre',
                 'description' => 'Rueda de Negocios, Feria Cultural y Fiesta de Cierre',
                 'start_date' => '2025-10-24',
-                'start_time' => '12:00:00',
+                'start_time' => '08:00:00',
                 'end_date' => '2025-10-24',
                 'end_time' => '23:59:00',
                 'location_name' => null,
