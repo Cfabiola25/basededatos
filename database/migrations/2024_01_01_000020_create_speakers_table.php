@@ -16,12 +16,12 @@ return new class extends Migration
             $table->uuid('uuid')->unique();
             $table->string('name');
             $table->string('last_name');
-            $table->string('gmail')->unique();
+            $table->string('gmail')->nullable();
             $table->foreignId('document_type_id')->nullable()->constrained()->onDelete('set null');
             $table->string('phone', 20)->nullable();
             $table->text('bio')->nullable();
             $table->string('specialization')->nullable();
-            $table->string('document_number')->unique();
+            $table->string('document_number')->nullable()->unique();
             $table->text('photo_url')->nullable();
             $table->text('linkedin_url')->nullable();
             $table->text('facebook_url')->nullable();

@@ -5,52 +5,36 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use App\Models\Event;
+use App\Models\Tag;
 
 class EventTagSeeder extends Seeder
 {
     public function run(): void
     {
-        DB::table('event_tag')->insert([
-            [
-                'uuid' => Str::uuid(),
-                'tag_id' => 1, // Turismo
-                'event_id' => 1, // Panel Inaugural
-                'deleted_at' => null,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'uuid' => Str::uuid(),
-                'tag_id' => 2, // Innovación
-                'event_id' => 2, // IA para Generación Gráfica
-                'deleted_at' => null,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'uuid' => Str::uuid(),
-                'tag_id' => 3, // IA
-                'event_id' => 2,
-                'deleted_at' => null,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'uuid' => Str::uuid(),
-                'tag_id' => 4, // Diseño
-                'event_id' => 3, // Taller de Diseño
-                'deleted_at' => null,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'uuid' => Str::uuid(),
-                'tag_id' => 5, // Moda
-                'event_id' => 4, // Materia Viva
-                'deleted_at' => null,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ]);
+        $events = Event::all();
+        $tags = Tag::all();
+
+        if ($events->isEmpty() || $tags->isEmpty()) {
+            dump('No hay eventos o tags para relacionar');
+            return;
+        }
+
+        foreach ($events as $event) {
+            // Seleccionamos aleatoriamente de 1 a 3 tags por evento
+            $tagIds = $tags->random(rand(1, min(3, $tags->count())))->pluck('id');
+
+            foreach ($tagIds as $tagId) {
+                DB::table('event_tag')->insert([
+                    'uuid' => Str::uuid(), // Aquí generamos el UUID
+                    'event_id' => $event->id,
+                    'tag_id' => $tagId,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
+        }
+
+        dump('Tags relacionados correctamente con eventos');
     }
 }

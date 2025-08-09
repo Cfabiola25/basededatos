@@ -11,11 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('event_tag', function (Blueprint $table) {
+        Schema::create('jornadas', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique();
-            $table->foreignId('tag_id')->constrained()->onDelete('cascade');
-            $table->foreignId('event_id')->constrained()->onDelete('cascade');
+            $table->foreignId('agenda_id')->constrained()->onDelete('cascade');
+            $table->string('title');
+            $table->text('description')->nullable();
+            $table->string('date')->nullable();
+
+            // Campos requeridos por el seeder
+            $table->timestamp('start_at');
+            $table->timestamp('end_at');
+
             $table->softDeletes();
             $table->timestamps();
         });
@@ -26,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('event_tags');
+        Schema::dropIfExists('jornadas');
     }
 };

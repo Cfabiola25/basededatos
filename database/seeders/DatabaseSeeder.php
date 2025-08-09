@@ -32,7 +32,6 @@ class DatabaseSeeder extends Seeder
             SpeakerSocialSeeder::class,
 
             // 5. Eventos y relaciones
-            EventSeeder::class,
             EventsAgendaSeeder::class,
             EventTagSeeder::class,
             EventSpeakerSeeder::class,

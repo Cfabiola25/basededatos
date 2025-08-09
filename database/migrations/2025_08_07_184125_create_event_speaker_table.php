@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('jornadas', function (Blueprint $table) {
+        Schema::create('agenda_speaker', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid')->unique();
-            $table->foreignId('event_id')->constrained()->onDelete('cascade');
-            $table->string('title');
-            $table->timestamp('start_at');
-            $table->timestamp('end_at');
-            $table->softDeletes();
+            $table->foreignId('events_agenda_id')->constrained('events_agenda')->onDelete('cascade');
+            $table->foreignId('speaker_id')->constrained('speakers')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('jornadas');
+        Schema::dropIfExists('agenda_speaker');
     }
 };
