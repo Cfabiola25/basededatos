@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->uuid('uuid')->unique();
             $table->foreignId('agenda_id')->constrained()->onDelete('cascade');
-            $table->foreignId('jornada_id')->constrained()->onDelete('cascade');
+            $table->foreignId('jornada_id')->constrained('jornadas')->onDelete('cascade');
             $table->string('title');
             $table->text('program');
             $table->string('time');
