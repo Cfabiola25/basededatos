@@ -35,7 +35,7 @@ class EventsAgendaSeeder extends Seeder
         $AGENDA_ID = $agenda->id;
 
         // ===================== LUNES 20 DE OCTUBRE =====================
-        $jornadaLunes = Jornada::whereIn('title', ['Lunes - Panel Inaugural'])->first();
+        $jornadaLunes = Jornada::whereIn('title', ['Lunes - Tendencias Mundiales en Innovación, Tecnología e Investigación, aportándole al desarrollo turístico y productivo de la región'])->first();
 
         if (!$jornadaLunes) {
             dump('No se encontró la jornada del lunes');
