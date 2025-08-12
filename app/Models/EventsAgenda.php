@@ -14,19 +14,48 @@ class EventsAgenda extends Model
     protected $fillable = [
         'uuid',
         'agenda_id',
-        'jornada_id', // Asegúrate de tener esta columna
+        'event_id',      // Día (events.id)
+        'jornada_id',
+        'category_id',
+        'location_id',
+        'place',
         'title',
         'program',
         'time',
     ];
+
+    /* ------- BelongsTo ------- */
+    public function agenda()
+    {
+        return $this->belongsTo(Agenda::class);
+    }
+
+    public function event() // Día al que pertenece esta actividad
+    {
+        return $this->belongsTo(Event::class);
+    }
 
     public function jornada()
     {
         return $this->belongsTo(Jornada::class);
     }
 
-    public function agenda()
+    public function category()
     {
-        return $this->belongsTo(Agenda::class);
+        return $this->belongsTo(Category::class);
+    }
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
+    }
+
+    /* ------- Many-to-Many ------- */
+    // ACTIVIDAD ↔ SPEAKERS (pivote: event_speakers, FK local en pivote: event_id → events_agenda.id)
+    public function speakers()
+    {
+        return $this->belongsToMany(Speaker::class, 'event_speakers', 'event_id', 'speaker_id')
+                    ->withTimestamps()
+                    ->withPivot('uuid');
     }
 }

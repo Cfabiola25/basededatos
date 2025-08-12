@@ -14,10 +14,21 @@ return new class extends Migration
         Schema::create('event_speakers', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique();
-            $table->foreignId('event_id')->constrained()->onDelete('cascade');
-            $table->foreignId('speaker_id')->constrained()->onDelete('cascade');
+
+            // Si events_agenda y speakers usan UUID como PK
+            $table->foreignId('event_id')
+                  ->constrained('events_agenda')
+                  ->onDelete('cascade');
+
+            $table->foreignId('speaker_id')
+                  ->constrained('speakers')
+                  ->onDelete('cascade');
+
             $table->softDeletes();
             $table->timestamps();
+
+            // Para evitar duplicados del mismo speaker en el mismo evento
+            $table->unique(['event_id', 'speaker_id']);
         });
     }
 

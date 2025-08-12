@@ -37,6 +37,8 @@ class DatabaseSeeder extends Seeder
             EventSpeakerSeeder::class,
             JornadaSpeakerSeeder::class,
             EventRatingSeeder::class,
+            EventSpeakerDaySeeder::class,
+
         ]);
     }
 }
